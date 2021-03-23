@@ -2,13 +2,12 @@
 
 export default function MessageBubble(props) {
         return(
-            <div>
-            <div class={props.message.type == 0 ? "me" : "you"} style={{marginTop:`${props.id*20}px`,fontSize:"15px"}}>
-                    { props.message.type == 1 ? <div style={{float:"left",fontSize:"14px"}}><b>{props.message.user}</b>
-                    <br/></div> : null}
-                    <div>{props.message.text} </div>
-            </div>
-            <br/>
-            </div>
+                <div>
+                <div class={props.message.type == 0 ? "balon1 p-2 m-0 position-relative" : "balon2 p-2 m-0 position-relative"} style={{fontSize:"15px"}} data-is={props.message.type == 0 ? (`${props.message.time}`) : (`${props.message.user} -  ${props.message.time}`) }>
+                        <a class={ props.message.type == 0 ? "float-right" : "float-left"}> {props.message.text} </a>
+                        
+                </div>
+                <br/>
+                </div>
         );
 }

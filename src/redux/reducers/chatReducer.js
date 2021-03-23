@@ -1,10 +1,7 @@
 import {NEW_MESSAGE} from "../actionTypes";
 
 const initialState = {
-    messages: [
-    {type:0,text:"denemee"},
-    {type:1,user:"ozan",text:"AAAAAAAAA"},
-]
+    messages: []
 }
 
 export default function chatReducer(state=initialState,action) {

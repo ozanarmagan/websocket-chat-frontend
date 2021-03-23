@@ -25,9 +25,9 @@ function Chat(props) {
                 if(data.message_type == "new_message")
                 {
                     if(data.user == props.nick)
-                        props.newMessage({type:0,text:data.message});
+                        props.newMessage({type:0,text:data.message,time:data.time});
                     else
-                        props.newMessage({type:1,text:data.message,user:data.user});
+                        props.newMessage({type:1,text:data.message,user:data.user,time:data.time});
                 }
             }
     },[]);
@@ -36,16 +36,23 @@ function Chat(props) {
         setMessage(event.target.value);
     }
 
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+          sendClick();
+        }
+      }
+
     const sendClick = () => {
         ws.current.send(JSON.stringify({"type":"new_message","message":`${message}`}))
+        setMessage("");
     }
 
     return ( 
         <Container style={{width:"700px"}}>
             <ChatBox/>
-            <br/>
+            <hr style={{color:"white"}}/>
             <div class="row">
-            <Input value={message} style={{width:"575px",fontSize:"20px",backgroundColor:"#1f3122",borderColor:"white",color:"white"}} onChange={onChangeMessage}/>
+            <Input value={message} style={{width:"575px",fontSize:"20px",backgroundColor:"#1f3122",borderColor:"white",color:"white"}} onKeyDown={handleKeyDown} onChange={onChangeMessage}/>
             <Button class="btn" color="success" style={{fontSize:"20px",marginLeft:"20px",marginRight:"0px"}} onClick={sendClick}>Gönder</Button>
             </div>
         </Container>
