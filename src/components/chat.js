@@ -2,7 +2,8 @@ import {useState,useEffect, useRef} from "react";
 import {connect} from "react-redux";
 import { Button, Container, Input } from "reactstrap";
 import ChatBox from "./chatbox";
-import {newMessage} from "../redux/actions";
+import {newMessage,onlineUsers} from "../redux/actions";
+import OnlineUsersBox from "./onlineUsers";
 function Chat(props) {
     const [status,setStatus] = useState(false);
     const ws = useRef(null);
@@ -10,7 +11,7 @@ function Chat(props) {
     const [message,setMessage] = useState("");
 
     useEffect(() => {
-        ws.current = new WebSocket("ws://localhost:8000");
+        ws.current = new WebSocket("ws://192.168.1.5:8000");
         ws.current.onopen = () => {ws.current.send(JSON.stringify({"type":"add_user","content":`${props.nick}`})); };
         ws.current.onmessage = event => {
                 let data =  JSON.parse(event.data.replaceAll("'","\""));
@@ -20,7 +21,7 @@ function Chat(props) {
                     data.users.forEach(user => {
                         temp_users.push(user);
                     });
-                    setUsers(temp_users);
+                    props.onlineUsers(temp_users);
                 }
                 if(data.message_type == "new_message")
                 {
@@ -48,9 +49,11 @@ function Chat(props) {
     }
 
     return ( 
-        <Container style={{width:"700px"}}>
+        <Container style={{width:"1000px",marginTop:"100px"}}>
+            <div class="row">
             <ChatBox/>
-            <hr style={{color:"white"}}/>
+            <OnlineUsersBox/>
+            </div>
             <div class="row">
             <Input value={message} style={{width:"575px",fontSize:"20px",backgroundColor:"#1f3122",borderColor:"white",color:"white"}} onKeyDown={handleKeyDown} onChange={onChangeMessage}/>
             <Button class="btn" color="success" style={{fontSize:"20px",marginLeft:"20px",marginRight:"0px"}} onClick={sendClick}>Gönder</Button>
@@ -62,11 +65,13 @@ function Chat(props) {
 }
 
 const mapStateToProps = state => ({
-    nick: state.nickReducer.nickname
+    nick: state.nickReducer.nickname,
+    users: state.usersReducer.users,
 })
 
 const mapDispatchToProps = (dispatch) => ({
     newMessage: (data) => dispatch(newMessage(data)),
+    onlineUsers: (data) => dispatch(onlineUsers(data)),
 });
 
 

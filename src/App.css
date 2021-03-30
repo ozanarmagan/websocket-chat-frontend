@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital@1&display=swap');
-
+@import "https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css";
 .App {
   text-align: center;
   font-family: 'Poppins';

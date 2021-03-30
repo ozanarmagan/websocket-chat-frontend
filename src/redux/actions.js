@@ -1,4 +1,4 @@
-import {SET_NICK,IS_SET, NEW_MESSAGE} from "./actionTypes";
+import {SET_NICK,IS_SET, NEW_MESSAGE,ONLINE_USERS} from "./actionTypes";
 
 export const setNick = nick => ({
     type: SET_NICK,
@@ -12,5 +12,10 @@ export const isSet = value => ({
 
 export const newMessage = data => ({
     type: NEW_MESSAGE,
+    payload:data
+});
+
+export const onlineUsers = data => ({
+    type: ONLINE_USERS,
     payload:data
 });
