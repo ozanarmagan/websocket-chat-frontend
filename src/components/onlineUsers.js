@@ -4,6 +4,7 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import TreeItem from '@material-ui/lab/TreeItem';
 import { makeStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
+import {FaUser} from "react-icons/fa"
 const useStyles = makeStyles({
     root: {
       height: 216,
@@ -14,22 +15,21 @@ const useStyles = makeStyles({
 
  function OnlineUsersBox(props) {
     const classes = useStyles();
-    return(<div class="box" style={{marginLeft:"100px",backgroundColor:"transparent",color:"white"}}>
-    <TreeView
-      className={classes.root}
-      defaultCollapseIcon={<ExpandMoreIcon />}
-      defaultExpandIcon={<ChevronRightIcon />}
-      multiSelect
-    >
-        <TreeItem nodeId="users" label="Online Kullanıcılar">
-            {
+    return(<article class="panel"  style={{marginLeft:"100px",width:"200px"}}>
+    <p class="panel-heading" style={{backgroundColor:"#275a53",color:"white"}}>
+        Online
+    </p>
+        {
                 props.users.map(user => (
-                    <TreeItem nodeId={props.users.indexOf(user)} label={user}></TreeItem>
+                    <a class="panel-block is-active" style={{borderBottom:"none"}}>
+                        <span class="panel-icon">
+                            <FaUser color="#275a53"/>
+                        </span>
+                        {user}
+                    </a>
                 ))
-            }
-        </TreeItem>
-    </TreeView>
-    </div>);
+        }
+    </article>);
 }
 
 const mapStateToProps = state => ({

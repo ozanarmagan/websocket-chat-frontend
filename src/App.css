@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital@1&display=swap');
-@import "https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css";
 .App {
   text-align: center;
   font-family: 'Poppins';
@@ -19,6 +18,28 @@ background: rgba(96, 125, 139,0.99);
 margin-top: 5px !important;
 margin-bottom: 5px !important;
 
+}
+.foot {
+  background-color: #2e2d29 !important;
+  max-height: 60px;
+  min-height: 50px;
+}
+
+.panel-block {
+  color:white  !important;
+}
+
+.panel-block:hover {
+  color:#363636  !important;
+}
+
+.bottom:hover {
+  color:rgb(81, 153, 131) !important;
+  transition: 0.5s;
+}
+
+.github {
+size:35px !important;
 }
 
 hr { background-color: rgb(216, 216, 216); height: 1px; border: 0; }
@@ -115,8 +136,8 @@ position: absolute;
 }
 
 .App-header {
-  background-color: #1f3122;
-  min-height: 100vh;
+  background-color: #2e2d29;
+  min-height: 95vh;
   display: flex;
   flex-direction: column;
   align-items: center;

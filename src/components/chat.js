@@ -11,7 +11,7 @@ function Chat(props) {
     const [message,setMessage] = useState("");
 
     useEffect(() => {
-        ws.current = new WebSocket("ws://192.168.1.5:8000");
+        ws.current = new WebSocket("ws://46.31.79.30:80");
         ws.current.onopen = () => {ws.current.send(JSON.stringify({"type":"add_user","content":`${props.nick}`})); };
         ws.current.onmessage = event => {
                 let data =  JSON.parse(event.data.replaceAll("'","\""));
@@ -54,9 +54,9 @@ function Chat(props) {
             <ChatBox/>
             <OnlineUsersBox/>
             </div>
-            <div class="row">
-            <Input value={message} style={{width:"575px",fontSize:"20px",backgroundColor:"#1f3122",borderColor:"white",color:"white"}} onKeyDown={handleKeyDown} onChange={onChangeMessage}/>
-            <Button class="btn" color="success" style={{fontSize:"20px",marginLeft:"20px",marginRight:"0px"}} onClick={sendClick}>Gönder</Button>
+            <div class="row" style={{marginTop:"50px",marginLeft:"5px"}}>
+            <Input value={message} style={{width:"575px",fontSize:"20px",backgroundColor:"#2e2d29",borderColor:"white",color:"white"}} onKeyDown={handleKeyDown} onChange={onChangeMessage}/>
+            <Button class="btn" color="dark" style={{fontSize:"20px",marginLeft:"20px",marginRight:"0px"}} onClick={sendClick}>Gönder</Button>
             </div>
         </Container>
     );

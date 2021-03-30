@@ -24,14 +24,14 @@ function Welcomescreen(props) {
     };
 
     return (
-        <Container style={{width:"600px"}}>
+        <div class="container" style={{width:"600px",marginTop:"350px"}}>
              <Alert color="danger" isOpen={visible} toggle={onDismiss}>Lütfen geçerli bir nick girin</Alert>
             <FormGroup>
             <Label style={{fontSize:"22px",color:"white"}}>Lütfen Nickinizi Girin</Label>
-            <Input value={nick} style={{width:"600px",fontSize:"20px",backgroundColor:"#1f3122",borderColor:"white",color:"white"}} onChange={onChangeText}/>
+            <Input value={nick} style={{width:"600px",fontSize:"20px",backgroundColor:"#2e2d29",borderColor:"white",color:"white"}} onChange={onChangeText}/>
             </FormGroup>
-            <Button class="btn" color="success" style={{fontSize:"20px"}} onClick={onClickButton}>Tamam</Button>
-        </Container>
+            <Button class="btn" color="dark" style={{fontSize:"20px"}} onClick={onClickButton}>Tamam</Button>
+        </div>
     );
 }
 
